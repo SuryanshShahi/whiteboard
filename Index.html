@@ -17,191 +17,500 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-<body>
+<script>
+    function backBoard() {
+        var x = document.getElementById('frontBoard');
+        var y = document.getElementById('backBoard');
 
-    <section class="draggable-elements">
-        <div class="row gx-0">
-            <div class="col-3">
-                <div class="row gx-0"  style="overflow-y: scroll;height:100vh;top: 0;position: sticky;">
-                    <div class="col-lg-6 col-md-6 col-12 p-1" style="background-color: #eee;cursor: move;">
-                        <div id="" ondrop="drop(event)" ondragover="allowDrop(event)">
-                            <img src="./download.jpg" draggable="true" ondragstart="drag(event)" id="drag1"
-                                style="height: 150px;width:100%">
-                        </div>
-                    </div>
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            y.style.display = "none";
+        } else {
+            x.style.display = "none"
+            y.style.display = "block"
+        }
+    }
+</script>
+<script>
+    var canvas, ctx, flag = false,
+        prevX = 0,
+        currX = -50,
+        prevY = 0,
+        currY = -50,
+        dot_flag = false;
 
-                    <div class="col-lg-6 col-md-6 col-12 p-1" style="background-color: #eee;cursor: move;">
-                        <div id="" ondrop="drop(event)" ondragover="allowDrop(event)">
-                            <img src="./download1.jpg" draggable="true" ondragstart="drag(event)" id="drag2"
-                                style="height: 150px;width:100%">
+    var x = "black",
+        y = 2;
+
+    function init() {
+        canvas = document.getElementById('can');
+        ctx = canvas.getContext("2d");
+        w = canvas.width;
+        h = canvas.height;
+
+        canvas.addEventListener("mousemove", function (e) {
+            findxy('move', e)
+        }, false);
+        canvas.addEventListener("mousedown", function (e) {
+            findxy('down', e)
+        }, false);
+        canvas.addEventListener("mouseup", function (e) {
+            findxy('up', e)
+        }, false);
+        canvas.addEventListener("mouseout", function (e) {
+            findxy('out', e)
+        }, false);
+    }
+
+    function color(obj) {
+        switch (obj.id) {
+            case "green":
+                x = "green";
+                break;
+            case "blue":
+                x = "blue";
+                break;
+            case "red":
+                x = "red";
+                break;
+            case "yellow":
+                x = "yellow";
+                break;
+            case "orange":
+                x = "orange";
+                break;
+            case "black":
+                x = "black";
+                break;
+            case "pink":
+                x = "pink";
+                break;
+            case "brown":
+                x = "brown";
+                break;
+            case "grey":
+                x = "grey";
+                break;
+            case "white":
+                x = "white";
+                break;
+        }
+        if (x == "white") y = 15;
+        else y = 2;
+
+    }
+
+    function draw() {
+        ctx.beginPath();
+        ctx.moveTo(prevX, prevY);
+        ctx.lineTo(currX, currY);
+        ctx.strokeStyle = x;
+        ctx.lineWidth = y;
+        ctx.stroke();
+        ctx.closePath();
+    }
+
+    function erase() {
+        var m = confirm("Want to clear");
+        if (m) {
+            ctx.clearRect(0, 0, w, h);
+            document.getElementById("canvasimg").style.display = "none";
+        }
+    }
+
+    function save() {
+        document.getElementById("canvasimg").style.border = "2px solid";
+        var dataURL = canvas.toDataURL();
+        document.getElementById("canvasimg").src = dataURL;
+        document.getElementById("canvasimg").style.display = "inline";
+    }
+
+    function findxy(res, e) {
+        if (res == 'down') {
+            prevX = currX;
+            prevY = currY;
+            currX = e.clientX - canvas.offsetLeft;
+            currY = e.clientY - canvas.offsetTop;
+
+            flag = true;
+            dot_flag = true;
+            if (dot_flag) {
+                ctx.beginPath();
+                ctx.fillStyle = x;
+                ctx.fillRect(currX, currY, 0, 0);
+                ctx.closePath();
+                dot_flag = false;
+            }
+        }
+        if (res == 'up' || res == "out") {
+            flag = false;
+        }
+        if (res == 'move') {
+            if (flag) {
+                prevX = currX;
+                prevY = currY;
+                currX = e.clientX - canvas.offsetLeft;
+                currY = e.clientY - canvas.offsetTop;
+                draw();
+            }
+        }
+    }
+</script>
+
+<body onload="init()">
+
+    <section id="frontBoard">
+        <div class="row" style="height: 100vh;">
+            <div class="col-2">
+                <div class="">
+                    <img src="./triangle.png" class="img-fluid" style="transform: rotate(180deg);width:100%" />
+                </div>
+                <div class="bottom-0 position-absolute">
+                    <div class="" style="height: 65vh;width: 16.5vw; overflow-y: scroll;">
+                        <div class="justify-content-center d-flex">
+                            <div class="m-2">
+                                <div class="" style="color: rgb(248, 10, 181); font-size: 27px;">
+                                    C<span style="color:yellow;">o</span><span style="color:green;">l</span><span
+                                        style="color:rgb(0, 187, 255);">o</span><span style="color:purple;">r</span>
+                                </div>
+                                <div class="mx-lg-4" style="color: rgb(248, 10, 181); font-size: 27px;">
+                                    C<span style="color:yellow;">h</span><span style="color:green;">a</span><span
+                                        style="color:rgb(0, 187, 255);">r</span><span style="color:purple;">t</span>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-12 p-1" style="background-color: #eee;cursor: move;">
-                        <div id="" ondrop="drop(event)" ondragover="allowDrop(event)">
-                            <img src="./download2.jpg" draggable="true" ondragstart="drag(event)" id="drag3"
-                                style="height: 150px;width:100%">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-12 p-1" style="background-color: #eee;cursor: move;">
-                        <div id="" ondrop="drop(event)" ondragover="allowDrop(event)">
-                            <img src="./download3.jpg" draggable="true" ondragstart="drag(event)" id="drag4"
-                                style="height: 150px;width:100%">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-12 p-1" style="background-color: #eee;cursor: move;">
-                        <div id="" ondrop="drop(event)" ondragover="allowDrop(event)">
-                            <img src="./download4.jpg" draggable="true" ondragstart="drag(event)" id="drag5"
-                                style="height: 150px;width:100%">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-12 p-1" style="background-color: #eee;cursor: move;">
-                        <div id="" ondrop="drop(event)" ondragover="allowDrop(event)">
-                            <img src="./download5.jpg" draggable="true" ondragstart="drag(event)" id="drag6"
-                                style="height: 150px;width:100%">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-12 p-1" style="background-color: #eee;cursor: move;">
-                        <div id="" ondrop="drop(event)" ondragover="allowDrop(event)">
-                            <img src="./download6.jpg" draggable="true" ondragstart="drag(event)" id="drag7"
-                                style="height: 150px;width:100%">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-12 p-1" style="background-color: #eee;cursor: move;">
-                        <div id="" ondrop="drop(event)" ondragover="allowDrop(event)">
-                            <img src="./download7.jpg" draggable="true" ondragstart="drag(event)" id="drag8"
-                                style="height: 150px;width:100%">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-12 p-1" style="background-color: #eee;cursor: move;">
-                        <div id="" ondrop="drop(event)" ondragover="allowDrop(event)">
-                            <img src="./download8.jpg" draggable="true" ondragstart="drag(event)" id="drag9"
-                                style="height: 150px;width:100%">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-12 p-1" style="background-color: #eee;cursor: move;">
-                        <div id="" ondrop="drop(event)" ondragover="allowDrop(event)">
-                            <img src="./download9.jpg" draggable="true" ondragstart="drag(event)" id="drag10"
-                                style="height: 150px;width:100%">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-12 p-1" style="background-color: #eee;cursor: move;">
-                        <div id="" ondrop="drop(event)" ondragover="allowDrop(event)">
-                            <img src="./download10.jpg" draggable="true" ondragstart="drag(event)" id="drag11"
-                                style="height: 150px;width:100%">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-12 p-1" style="background-color: #eee;cursor: move;">
-                        <div id="" ondrop="drop(event)" ondragover="allowDrop(event)">
-                            <img src="./download11.jpg" draggable="true" ondragstart="drag(event)" id="drag12"
-                                style="height: 150px;width:100%">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-12 p-1" style="background-color: #eee;cursor: move;">
-                        <div id="" ondrop="drop(event)" ondragover="allowDrop(event)">
-                            <img src="./download12.jpg" draggable="true" ondragstart="drag(event)" id="drag13"
-                                style="height: 150px;width:100%">
+                        <div class="row mt-4">
+                            <div class="col-lg-6 col-12 mb-2 text-center">
+                                <div class="fa fa-pencil fa-3x" style="color: red;" id="red" onclick="color(this)">
+                                </div>
+                                <div style="font-size: 16px; color: red;">Red</div>
+                            </div>
+                            <div class="col-lg-6 col-12 mb-2 text-center">
+                                <div class="fa fa-pencil fa-3x" style="color: orange;" id="orange"
+                                    onclick="color(this)"></div>
+                                <div style="font-size: 16px; color: orange;">Orange</div>
+                            </div>
+                            <div class="col-lg-6 col-12 mb-2 text-center">
+                                <div class="fa fa-pencil fa-3x" style="color: yellow;" id="yellow"
+                                    onclick="color(this)"></div>
+                                <div style="font-size: 16px; color: yellow;">Yellow</div>
+                            </div>
+                            <div class="col-lg-6 col-12 mb-2 text-center">
+                                <div class="fa fa-pencil fa-3x" style=" color: green;" id="green" onclick="color(this)">
+                                </div>
+                                <div style="font-size: 16px; color: green;">Green</div>
+                            </div>
+                            <div class="col-lg-6 col-12 mb-2 text-center">
+                                <div class="fa fa-pencil fa-3x" style=" color: blue;" id="blue" onclick="color(this)">
+                                </div>
+                                <div style="font-size: 16px; color: blue;">Blue</div>
+                            </div>
+                            <div class="col-lg-6 col-12 mb-2 text-center">
+                                <div class="fa fa-pencil fa-3x" style="color: rgb(248, 10, 181);" id="pink"
+                                    onclick="color(this)"></div>
+                                <div style="font-size: 16px; color: rgb(248, 10, 181);">Pink</div>
+                            </div>
+                            <div class="col-lg-6 col-12 mb-2 text-center">
+                                <div class="fa fa-pencil fa-3x" style="color: brown" id="brown" onclick="color(this)">
+                                </div>
+                                <div style="font-size: 16px; color: brown;">Brown</div>
+                            </div>
+                            <div class="col-lg-6 col-12 mb-2 text-center">
+                                <div class="fa fa-pencil fa-3x" style="color: black" id="black" onclick="color(this)">
+                                </div>
+                                <div style="font-size: 16px; color: black;">Black</div>
+                            </div>
+
+                            <div class="col-lg-6 col-12 mb-2 text-center">
+                                <div class="fa fa-pencil fa-3x" style="color: grey" id="grey" onclick="color(this)">
+                                </div>
+                                <div style="font-size: 16px; color: grey;">Grey</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="col-8 midSection bg-white" style="height: 100vh; overflow-y: scroll;overflow-x: hidden;">
+                <div class="p-2 d-flex" style="top:0;position: sticky;background-color: #d0d0d0;">
+                    <div class="btn btn-dark rounded-pill text-white px-3 d-flex align-items-center"
+                        style="width:fit-content;background-color:#172337;" onclick="backBoard()">Switch to
+                        BackBoard&nbsp;<img style="height: 20px ;"
+                            src="https://img.icons8.com/material-outlined/24/FFFFFF/move-right.png" /></div>
+                    <div class="" style="margin-left: auto;">
+                        <div class="text-center">
+                            <div class="fa fa-eraser fa-lg text-white" id="white" onclick="color(this)"></div>
+                            <div style="font-size: 16px; color: black; line-height: 0.9;">Eraser</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-100">
 
-
-            <div class="col-9" >
-                <di class="row gx-0 py-1">
-                    <div class="col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div id="div1" style="height: 150px; width:100%" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    <canvas id="can" style="border:2px solid black;"></canvas>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div id="div1" style="height: 270px;width:100%" ondrop="drop(event)"
+                            ondragover="allowDrop(event)"></div>
                     </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div id="div1" style="height: 150px; width:100%" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    <div class="col-6">
+                        <div id="div1" style="height: 270px;width:100%" ondrop="drop(event)"
+                            ondragover="allowDrop(event)"></div>
                     </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div id="div1" style="height: 150px; width:100%" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    <div class="col-6">
+                        <div id="div1" style="height: 270px;width:100%" ondrop="drop(event)"
+                            ondragover="allowDrop(event)"></div>
                     </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div id="div1" style="height: 150px; width:100%" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    <div class="col-6">
+                        <div id="div1" style="height: 270px;width:100%" ondrop="drop(event)"
+                            ondragover="allowDrop(event)"></div>
                     </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div id="div1" style="height: 150px; width:100%" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    <div class="col-6">
+                        <div id="div1" style="height: 270px;width:100%" ondrop="drop(event)"
+                            ondragover="allowDrop(event)"></div>
                     </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div id="div1" style="height: 150px; width:100%" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                    <div class="col-6">
+                        <div id="div1" style="height: 270px;width:100%" ondrop="drop(event)"
+                            ondragover="allowDrop(event)"></div>
                     </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div id="div1" style="height: 150px; width:100%" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                </div>
+                <div class="" style="bottom: 0;position:sticky;width: 100%;">
+                    <div class="row">
+                        <div class="col p-1" style="background-color: #eee;cursor: move;">
+                            <div id="" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                <img src="./2.png" draggable="true" ondragstart="drag(event)" id="drag14"
+                                    style="height: 100%;width:100%">
+                            </div>
+                        </div>
+                        <div class="col p-1" style="background-color: #eee;cursor: move;">
+                            <div id="" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                <img src="./3.png" draggable="true" ondragstart="drag(event)" id="drag15"
+                                    style="height: 100%;width:100%">
+                            </div>
+                        </div>
+                        <div class="col p-1" style="background-color: #eee;cursor: move;">
+                            <div id="" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                <img src="./4.png" draggable="true" ondragstart="drag(event)" id="drag16"
+                                    style="height: 100%;width:100%">
+                            </div>
+                        </div>
+                        <div class="col p-1" style="background-color: #eee;cursor: move;">
+                            <div id="" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                <img src="./5.png" draggable="true" ondragstart="drag(event)" id="drag17"
+                                    style="height: 100%;width:100%">
+                            </div>
+                        </div>
+                        <div class="col p-1" style="background-color: #eee;cursor: move;">
+                            <div id="" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                <img src="./6.png" draggable="true" ondragstart="drag(event)" id="drag18"
+                                    style="height: 100%;width:100%">
+                            </div>
+                        </div>
+                        <div class="col p-1" style="background-color: #eee;cursor: move;">
+                            <div id="" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                <img src="./7.png" draggable="true" ondragstart="drag(event)" id="drag19"
+                                    style="height: 100%;width:100%">
+                            </div>
+                        </div>
+                        <div class="col p-1" style="background-color: #eee;cursor: move;">
+                            <div id="" ondrop="drop(event)" ondragover="allowDrop(event)">
+                                <img src="./8.png" draggable="true" ondragstart="drag(event)" id="drag20"
+                                    style="height: 100%;width:100%">
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div id="div1" style="height: 150px; width:100%" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="">
+                    <img src="./triangle.png" class="img-fluid " style="transform: rotate(270deg);width:100%" />
+                </div>
+                <div id="" class="bottom-0 position-absolute">
+                    <div class="row " style="height: 65vh; overflow-y: scroll;">
+                        <div class="col-lg-7 col-12" style="padding-right: 0;">
+                            <div class="">
+                                <ul class="list-unstyled"
+                                    style="margin: 0;font-weight: 500;border-right: 3px solid black;height:100%;border-bottom: 3px solid black;">
+                                    <div class="text-white mb-2 px-2">Days<br> of the Week</div>
+                                    <li class="py-1 text-center"
+                                        style="border-bottom:2px solid black;background-color: wheat;">Monday</li>
+                                    <li class="py-1 text-center"
+                                        style="border-bottom:2px solid black;background-color: orange;">Tuesday</li>
+                                    <li class="py-1 text-center"
+                                        style="border-bottom:2px solid black;background-color: yellow;">Wednesday</li>
+                                    <li class="py-1 text-center"
+                                        style="border-bottom:2px solid black;background-color: rgb(171, 171, 6);">
+                                        Thursday
+                                    </li>
+                                    <li class="py-1 text-center"
+                                        style="border-bottom:2px solid black;background-color: green;">Friday</li>
+                                    <li class="py-1 text-center"
+                                        style="border-bottom:2px solid black;background-color: rgb(0, 187, 255);">
+                                        Saturday
+                                    </li>
+                                    <li class="py-1 text-center"
+                                        style="border-bottom:2px solid black;background-color: purple;">Sunday</li>
+                                </ul>
+                                <ul class="list-unstyled"
+                                    style="margin: 0;width:fit-content;font-weight: 500;border-right: 3px solid black;height:100%;border-bottom: 3px solid black;">
+                                    <div class="text-white text-center mb-2 px-2">Seasons</div>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-12 justify-content-center d-flex py-3"
+                                            style="border-bottom:2px solid black;border-right:2px solid black;background-color: pink;">
+                                            <div class="text-center">
+                                                <div class="fa fa-spinner fa-3x"></div>
+                                                <div class="">SPRINGS</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-12 justify-content-center d-flex py-3"
+                                            style="border-bottom:2px solid black;background-color: green;">
+                                            <div class="text-center">
+                                                <div class="fa fa-sun-o fa-3x"></div>
+                                                <div class="">SUMMER</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-12 justify-content-center d-flex py-3"
+                                            style="border-bottom:2px solid black;border-right:2px solid black;background-color: orange;">
+                                            <div class="text-center">
+                                                <div class="fa fa-leaf fa-3x"></div>
+                                                <div class="">FALL</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-12 justify-content-center d-flex py-3"
+                                            style="border-bottom:2px solid black;background-color: rgb(0, 187, 255);;">
+                                            <div class="text-center">
+                                                <img src="./winters.png" class="img-fluid" style="width: 52%;" />
+                                                <div class="mt-1">SPRINGS</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-5 col-12 p-0">
+                            <ul class="list-unstyled"
+                                style="margin: 0;font-weight: 500;border-bottom: 3px solid black;">
+                                <div class="text-white mb-2 px-2">Months<br> of the Year</div>
+                                <li class="py-1 text-center"
+                                    style="border-bottom:2px solid black;background-color: rgb(0, 187, 255);">January
+                                </li>
+                                <li class="py-1 text-center"
+                                    style="border-bottom:2px solid black;background-color: rgb(0, 187, 255);;">Feburary
+                                </li>
+                                <li class="py-1 text-center"
+                                    style="border-bottom:2px solid black;background-color: pink;">March</li>
+                                <li class="py-1 text-center"
+                                    style="border-bottom:2px solid black;background-color: pink">April
+                                </li>
+                                <li class="py-1 text-center"
+                                    style="border-bottom:2px solid black;background-color: pink;">May</li>
+                                <li class="py-1 text-center"
+                                    style="border-bottom:2px solid black;background-color: green">June
+                                </li>
+                                <li class="py-1 text-center"
+                                    style="border-bottom:2px solid black;background-color: green;">July</li>
+                                <li class="py-1 text-center"
+                                    style="border-bottom:2px solid black;background-color: green;">August</li>
+                                <li class="py-1 text-center"
+                                    style="border-bottom:2px solid black;background-color: orange;">September</li>
+                                <li class="py-1 text-center"
+                                    style="border-bottom:2px solid black;background-color: orange;">October</li>
+                                <li class="py-1 text-center"
+                                    style="border-bottom:2px solid black;background-color: orange;">November</li>
+                                <li class="py-1 text-center"
+                                    style="border-bottom:2px solid black;background-color: rgb(0, 187, 255);">December
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div id="div1" style="height: 150px; width:100%" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div id="div1" style="height: 150px; width:100%" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div id="div1" style="height: 150px; width:100%" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div id="div1" style="height: 150px; width:100%" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div id="div1" style="height: 150px; width:100%" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div id="div1" style="height: 150px; width:100%" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div id="div1" style="height: 150px; width:100%" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div id="div1" style="height: 150px; width:100%" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div id="div1" style="height: 150px; width:100%" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div id="div1" style="height: 150px; width:100%" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div id="div1" style="height: 150px; width:100%" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div id="div1" style="height: 150px; width:100%" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div id="div1" style="height: 150px; width:100%" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div id="div1" style="height: 150px; width:100%" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div id="div1" style="height: 150px; width:100%" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div id="div1" style="height: 150px; width:100%" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div id="div1" style="height: 150px; width:100%" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div id="div1" style="height: 150px; width:100%" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div id="div1" style="height: 150px; width:100%" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div id="div1" style="height: 150px; width:100%" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div id="div1" style="height: 150px; width:100%" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-4 col-6">
-                        <div id="div1" style="height: 150px; width:100%" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-                    </div>
-                </di>
-
+                </div>
             </div>
         </div>
+    </section>
+
+    <section id="backBoard" style="display:none;">
+        <div class="row" style="height: 100vh;">
+            <div class="col-2">
+                <div class="">
+                    <img src="./triangle.png" class="img-fluid" style="transform: rotate(180deg);width:100%" />
+                </div>
+                <div class="bottom-0 position-absolute">
+                    <div class="" style="height: 65vh;width: 16.5vw; overflow-y: scroll;">
+                        <div class="justify-content-center d-flex">
+                            <div>
+                                <div class="py-2 mx-5 bg-danger"></div>
+                                <div class="text-white mt-3" style="font-weight: 500; font-size: 27px;">Substraction
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="justify-content-center d-flex text-white" style="margin-top: 150px;">
+                            <div class="">
+                                <div class="d-lg-flex text-center align-items-center mb-lg-2 mb-3">
+                                    <div class="mx-lg-3 mx-1 bg-danger" style="height: 5px;width: 80px;"></div>Subract
+                                </div>
+                                <div class="d-lg-flex text-center align-items-center mb-lg-2 mb-3">
+                                    <div class="mx-lg-3 mx-1 bg-danger" style="height: 5px;width: 80px;"></div>Minus
+                                </div>
+                                <div class="d-lg-flex text-center align-items-center mb-lg-2 mb-3">
+                                    <div class="mx-lg-3 mx-1 bg-danger" style="height: 5px;width: 80px;"></div>Take Away
+                                </div>
+                                <div class="d-lg-flex text-center align-items-center mb-lg-2 mb-3">
+                                    <div class="mx-lg-3 mx-1 bg-danger" style="height: 5px;width: 80px;"></div>>Less
+                                    Than
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8 midSection bg-white" style="height: 100vh; overflow-y: scroll;">
+
+                <div class="p-2" style="top:0;position: sticky;background-color: #d0d0d0;">
+                    <div class="btn btn-dark rounded-pill text-white px-3 d-flex align-items-center"
+                        style="width:fit-content;background-color:#172337;" onclick="backBoard()">Switch to
+                        BackBoard&nbsp;<img style="height: 20px ;"
+                            src="https://img.icons8.com/material-outlined/24/FFFFFF/move-right.png" /></div>
+                </div>
+                <div class="" style="height: 100vh;"></div>
+                <div class="bg-dark" style="bottom: 0;position:sticky;width: 100%; height: 120px;">
+
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="">
+                    <img src="./triangle.png" class="img-fluid position-absolute" style="transform: rotate(270deg);" />
+                </div>
+                <div id="" class="bottom-0 position-absolute">
+                    <div class="row" style="height: 65vh; overflow-y: scroll;">
+                        <div class="justify-content-center d-flex">
+                            <div class="text-center">
+                                <div class="fa fa-plus fa-4x" style="color: rgb(12, 241, 12);"></div>
+                                <div class="text-white mt-3" style="font-weight: 500; font-size: 27px;">Addition</div>
+                            </div>
+
+
+                        </div>
+                        <div class="my-4 text-white justify-content-center d-flex">
+                            <div>
+                                <div class="d-flex align-items-center mb-2">
+                                    <div class="fa fa-plus fa-lg px-2" style="color: rgb(12, 241, 12);"></div>Add
+                                </div>
+                                <div class="d-flex align-items-center mb-2">
+                                    <div class="fa fa-plus fa-lg px-2" style="color: rgb(12, 241, 12);"></div>Plus
+                                </div>
+                                <div class="d-flex align-items-center mb-2">
+                                    <div class="fa fa-plus fa-lg px-2" style="color: rgb(12, 241, 12);"></div>All
+                                    Together
+                                </div>
+                                <div class="d-flex align-items-center mb-2">
+                                    <div class="fa fa-plus fa-lg px-2" style="color: rgb(12, 241, 12);"></div>
+                                    < Greater Than </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </section>
 </body>
 
