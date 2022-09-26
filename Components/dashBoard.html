@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0">
+    <title>White Board</title>
+    <link rel="icon" href="" type="image/x-icon">
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+        $(document).ready(function () {
+            $('#sidebarCollapse1').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+
+
+        const sendEnquiry = () => {
+
+            var x = document.getElementById("next");
+            var y = document.getElementById("enquiry");
+
+            if (x.style.display === "block") {
+                x.style.display = "none"
+                y.style.display = "block"
+            } else {
+                x.style.display = "block"
+                y.style.display = "none"
+            }
+        }
+        // document.getElementById('nextBtn').click();
+    </script>
+    <style>
+        .nav-tabs {
+            font-size: 16px !important;
+        }
+    </style>
+
+<body>
+    <div class="wrapper">
+        <nav id="sidebar" class="position-relative" style="box-shadow:1px 0px 2px 1px silver">
+            <div class="sidebar-header d-flex align-items-center" style="box-shadow:0px 0px 2px 1px silver">
+                <img src="../Images/logo.png" id="logo" class="img-fluid p-4" />
+                <div id="close" style="display: none;">
+                    <div class="position-relative d-flex align-items-center">
+                        <div class="position-absolute px-2 pb-2" style="font-size: 48px;width: 100%;"
+                            id="sidebarCollapse1">&times;</div>
+                    </div>
+                </div>
+            </div>
+
+            <ul class="nav nav-tabs list-unstyled mx-4 my-5"
+                style="color:black;font-weight: 500;border-bottom: none;font-size: 20px;">
+                <li class="active py-3">
+                    <div class="active tab align-items-center d-flex" type="button" data-bs-toggle="tab" href="#home">
+                        <img src="../Images/home.png" class="img-fluid" style="padding-right: 20px;" />Home
+                    </div>
+                </li>
+                <li class="py-3">
+                    <div class="tab align-items-center d-flex" type="button" data-bs-toggle="tab" href="#premade">
+                        <img src="../Images/premade.png" class="img-fluid" style="padding-right: 20px;" />Pre-made
+                        boards
+                    </div>
+                </li>
+                <li class="py-3">
+                    <div class="tab align-items-center d-flex" type="button" data-bs-toggle="tab" href="#custom">
+                        <img src="../Images/customBoards.png" class="img-fluid" style="padding-right: 20px;" />Custom
+                        Board
+                    </div>
+                </li>
+                <li class="py-3">
+                    <div class="tab align-items-center d-flex" type="button" data-bs-toggle="tab" href="#account">
+                        <img src="../Images/account_box.png" class="img-fluid" style="padding-right: 20px;" />My account
+                    </div>
+                </li>
+                <li class="py-3">
+                    <div class="tab align-items-center d-flex" type="button" data-bs-toggle="tab" href="#contact">
+                        <img src="../Images/contacts.png" class="img-fluid"
+                            style="padding-right: 20px;width: 44px;" />Contact us
+                    </div>
+                </li>
+            </ul>
+            <div class="bottom-0 position-absolute py-4 justify-content-center d-flex" style="width: 100%;">
+                <img src="../Images/logout.png" class="img-fluid text" style="padding-right: 20px;" />Logout
+            </div>
+        </nav>
+
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light" style="top:0;position:sticky">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fa fa-bars fa-lg"></i>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa fa-bars fa-lg text-white"></i>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <div class="d-flex align-items-center" style="margin-left: auto;">
+                            <div class="fa fa-question-circle-o fa-lg" style="padding-right: 50px;"></div>
+                            <div>
+                                <div style="font-weight: 500;">hello bunny</div>
+                                <div class="" style="font-size: 12px;color: grey;">hello@gmail.com</div>
+                            </div>
+                            <img src="../Images/user.png" class="img-fluid"
+                                style="border-radius:50px;padding-left:20px" />
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="tab-content mt-4">
+                <div id="home" class="active tab-pane">
+                    <div class="row">
+                        <div class="col-lg-8 col-12 colPadding" style="padding-right: 20px;">
+                            <div class="row mt-2" style="font-weight: 500;text-align:justify;">
+                                <div style="font-size: 24px;font-weight:600">Handheld whiteboards with pre-printed
+                                    learning
+                                    charts for
+                                    Pre-K thru 6th grade!</div>
+                                <div class="my-3 mb-5" style="font-size: 16px;font-weight: 500;">You can choose from
+                                    these 4
+                                    basic boards or you can customize
+                                    your own personal boards (30 or more)
+                                    for your students.</div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 px-2 col-12 mb-5 justify-content-center d-flex">
+                                    <div>
+                                        <img src="../Images/kids2.png" class="img-fluid" />
+                                        <div class="text-center">Pre-K & Kindergarten</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 px-2 col-12 mb-5 justify-content-center d-flex">
+                                    <div>
+                                        <img src="../Images/kids.png" class="img-fluid" />
+                                        <div class="text-center">1st & 2nd Graders</div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 px-2 col-12 mb-5 justify-content-center d-flex">
+                                    <div>
+                                        <img src="../Images/kids1.png" class="img-fluid" />
+                                        <div class="text-center">3rd & 4th Graders</div>
+                                    </div>
+                                </div>
+                                <div
+                                    class="col-lg-6 col-md-6 col-sm-6 px-2 col-12 mb-lg-0 mb-mb-0 mb-sm-0 mb-4 justify-content-center d-flex">
+                                    <div>
+                                        <img src="../Images/kinder.png" class="img-fluid" />
+                                        <div class="text-center">5th & 6th Graders</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-12 justify-content-center d-flex">
+                            <div>
+                                <div class="position-relative">
+                                    <div class="position-absolute text-center py-4 px-3 text-white"
+                                        style="font-weight: 600;font-size:20px">
+                                        Helping your child build a photographic memory!</div>
+                                </div><img src="../Images/Rectangle 11.png" class="img-fluid" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="premade" class="tab-pane fade">
+                    Pre-made
+                </div>
+                <div id="custom" class="tab-pane fade">
+                    <div class="" id="next">
+                        <div style="font-size:24px;font-weight: 600;border-radius: 15px;box-shadow: 1px 1px 2px 1px silver;"
+                            class="bg-dark p-4 text-white">Customize your board</div>
+                        <div class="row">
+                            <div class="col-lg-8 col-12 colPadding" style="padding-right: 20px;">
+                                <div class="row mt-2" style="text-align:justify;">
+
+                                    <div class="my-3 px-3 mb-5" style="font-size: 16px;font-weight: 500;">Design your
+                                        student’s chart</div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-12 px-3 mb-5">
+                                        <label>Board Dimentions:</label><br>
+                                        <select class="w-100 p-2 border-0"
+                                            style="background-color: #eee;height: 45px;border-radius: 10px;outline: 0;">
+                                            <option>select</option>
+                                            <option>select</opt ion>
+                                            <option>select</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-12 px-3 mb-5">
+                                        <label>Select grade:</label><br>
+                                        <select class="w-100 p-2 border-0"
+                                            style="background-color: #eee;height: 45px;border-radius: 10px;outline: 0;">
+                                            <option>select</option>
+                                            <option>select</option>
+                                            <option>select</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="my-3 px-3 mb-5" style="font-size: 16px;font-weight: 500;">Number of
+                                        elements
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-12 px-3 mb-5">
+                                        <label>Front of board:</label><br>
+                                        <select class="w-100 p-2 border-0"
+                                            style="background-color: #eee;height: 45px;border-radius: 10px;outline: 0;">
+                                            <option>select</option>
+                                            <option>select</option>
+                                            <option>select</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-12 px-3">
+                                        <label>Back of board:</label><br>
+                                        <select class="w-100 p-2 border-0"
+                                            style="background-color: #eee;height: 45px;border-radius: 10px;outline: 0;">
+                                            <option>select</option>
+                                            <option>select</option>
+                                            <option>select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="text-center mt-lg-0 mt-md-0 mt-sm-0 my-5">
+                                    <div class="btn btn-primary border-0 w-25 py-2" id="nextBtn"
+                                        style="border-radius: 10px;background-color: #7548FE;" onclick="sendEnquiry()">
+                                        Next</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-12">
+                                <div class="my-3 mb-4" style="font-size: 16px;font-weight: 500;">Number of elements
+                                </div>
+                                <div class="py-5 my-3 text-center" style="background-color: #eee;">
+                                    <img src="../Images/image 30.png" style="height:70px" class="img-fluid" />
+                                </div>
+                                <div class="py-5 my-3 text-center" style="background-color: #eee;">
+                                    <img src="../Images/image 31.png" style="height:70px" class="img-fluid" />
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="" id="enquiry" style="display: none;">
+                        <div style="font-size:24px;font-weight: 600;border-radius: 15px;box-shadow: 1px 1px 2px 1px silver;"
+                            class="bg-dark p-4 text-white">Enquiry Form</div>
+                        <div class="row mt-5" style="text-align:justify;">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-12 px-3 mb-3">
+                                <label>First Name:</label><br>
+                                <input type="text" class="form-control border-0"
+                                    style="height: 45px;background-color: #eee;border-radius: 10px;outline: 0;" />
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-12 px-3 mb-3">
+                                <label>Secont Name:</label><br>
+                                <input type="text" class="form-control border-0"
+                                    style="height: 45px;background-color: #eee;border-radius: 10px;outline: 0;" />
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-12 px-3 mb-3">
+                                <label>Email address:</label><br>
+                                <input type="email" class="form-control border-0"
+                                    style="height: 45px;background-color: #eee;border-radius: 10px;outline: 0;" />
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-12 px-3 mb-3">
+                                <label>Contact number:</label><br>
+                                <input type="tel" class="form-control border-0"
+                                    style="height: 45px;background-color: #eee;border-radius: 10px;outline: 0;" />
+                            </div>
+                            <div class="col-12 px-3 mb-3">
+                                <label>Address:</label><br>
+                                <textarea rows="5" class="border-0 px-3 py-2"
+                                    style="width: 100%;background-color: #eee;border-radius: 10px;outline: 0;"></textarea>
+                            </div>
+                            <div class="col-12 px-3 mb-3">
+                                <label>Remarks:</label><br>
+                                <input type="text" class="form-control border-0"
+                                    style="height: 45px;background-color: #eee;border-radius: 10px;outline: 0;" />
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-12 px-3 mb-3">
+                                <label>Quantity required:</label><br>
+                                <select class="w-100 p-2 border-0"
+                                    style="height: 45px;background-color: #eee;border-radius: 10px;outline: 0;">
+                                    <option>select</option>
+                                    <option>select</opt ion>
+                                    <option>select</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-12 px-3">
+                                <label>Markers:</label><br>
+                                <select class="w-100 p-2 border-0"
+                                    style="height: 45px;background-color: #eee;border-radius: 10px;outline: 0;">
+                                    <option>select</option>
+                                    <option>select</option>
+                                    <option>select</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <div class="text-center my-5">
+                                <div class="btn btn-primary border-0 py-2 px-5 mx-2"
+                                    style="border-radius: 10px;background-color: #eee;border: 1px solid silver;color: black;"
+                                    onclick="sendEnquiry()">
+                                    Back</div>
+                            </div>
+                            <div class="text-center my-5">
+                                <div class="btn btn-primary border-0 py-2 px-5 mx-2"
+                                    style="border-radius: 10px;background-color: #7548FE;">Send enquiry</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="account" class="tab-pane fade">
+                    account
+                </div>
+                <div id="contact" class="tab-pane fade">
+                    contact
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
