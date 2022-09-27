@@ -126,7 +126,7 @@ a[aria-expanded="true"] {
   }
   #sidebar {
     margin-left: -250px;
-    z-index: 1 !important;
+    z-index: 999 !important;
     position: absolute !important;
     height: 100% !important;
     background-color: white;
