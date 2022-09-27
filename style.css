@@ -3,10 +3,6 @@
   padding: 0;
 }
 
-.row {
-  --bs-gutter-x: 0 !important;
-}
-
 ::-webkit-scrollbar {
   width: 0px;
   height: 0px;
@@ -145,6 +141,6 @@ a[aria-expanded="true"] {
 
 @media (max-width: 990px) {
   .colPadding {
-    padding: 0 !important;
+    padding: 20 !important;
   }
 }

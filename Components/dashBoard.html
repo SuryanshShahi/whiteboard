@@ -27,25 +27,43 @@
             });
         });
 
-
-        const sendEnquiry = () => {
-
-            var x = document.getElementById("next");
-            var y = document.getElementById("enquiry");
-
-            if (x.style.display === "block") {
-                x.style.display = "none"
-                y.style.display = "block"
-            } else {
-                x.style.display = "block"
-                y.style.display = "none"
-            }
+        const sendEnquiry1 = () => {
+            document.getElementById("next").style.display = "block";
+            document.getElementById("enquiry").style.display = "none";
         }
-        // document.getElementById('nextBtn').click();
+        const sendEnquiry = () => {
+            document.getElementById("next").style.display = "none";
+            document.getElementById("enquiry").style.display = "block";
+        }
+
     </script>
     <style>
         .nav-tabs {
             font-size: 16px !important;
+        }
+
+        .select {
+            opacity: 0;
+        }
+
+        .grade,
+        .select {
+            transition: 0.5s;
+        }
+
+        .grade:hover {
+            z-index: 1;
+        }
+
+        .grade:hover .select {
+            border-radius: 8px;
+            opacity: 1;
+            background-color: rgb(0, 0, 0, 0.6);
+        }
+        @media(max-width:450px){
+            .userProfile, .fa-question-circle-o {
+                display: none;
+            }
         }
     </style>
 
@@ -70,66 +88,71 @@
                     </div>
                 </li>
                 <li class="py-3">
-                    <div class="tab align-items-center d-flex" type="button" data-bs-toggle="tab" href="#premade">
-                        <img src="../Images/premade.png" class="img-fluid" style="padding-right: 20px;" />Pre-made
-                        boards
-                    </div>
-                </li>
-                <li class="py-3">
                     <div class="tab align-items-center d-flex" type="button" data-bs-toggle="tab" href="#custom">
                         <img src="../Images/customBoards.png" class="img-fluid" style="padding-right: 20px;" />Custom
+                        Your
                         Board
                     </div>
                 </li>
                 <li class="py-3">
-                    <div class="tab align-items-center d-flex" type="button" data-bs-toggle="tab" href="#account">
-                        <img src="../Images/account_box.png" class="img-fluid" style="padding-right: 20px;" />My account
+                    <div class="tab align-items-center d-flex" type="button" data-bs-toggle="tab" href="#drafts">
+                        <img src="../Images/account_box.png" class="img-fluid" style="padding-right: 20px;" />My Drafts
+                    </div>
+                </li>
+                <li class="py-3">
+                    <div class="tab align-items-center d-flex" type="button" data-bs-toggle="tab" href="#about">
+                        <img src="../Images/about.png" class="img-fluid"
+                            style="padding-right: 20px;width: 44px;" />About Us
                     </div>
                 </li>
                 <li class="py-3">
                     <div class="tab align-items-center d-flex" type="button" data-bs-toggle="tab" href="#contact">
                         <img src="../Images/contacts.png" class="img-fluid"
-                            style="padding-right: 20px;width: 44px;" />Contact us
+                            style="padding-right: 20px;width: 44px;" />Contact Us
                     </div>
                 </li>
             </ul>
-            <div class="bottom-0 position-absolute py-4 justify-content-center d-flex" style="width: 100%;">
-                <img src="../Images/logout.png" class="img-fluid text" style="padding-right: 20px;" />Logout
-            </div>
+            <a href="../index.html" class="text-decoration-none" style="color: black;font-weight: 500;">
+                <div class="bottom-0 position-absolute py-4 justify-content-center d-flex" style="width: 100%;">
+                    <img src="../Images/logout.png" class="img-fluid text" style="padding-right: 20px;" />Logout
+                </div>
+            </a>
         </nav>
 
         <div id="content">
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light" style="top:0;position:sticky">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light" style="top:0;position:sticky;z-index: 1;">
                 <div class="container-fluid">
 
-                    <button type="button" id="sidebarCollapse" class="btn btn-info">
-                        <i class="fa fa-bars fa-lg"></i>
+                    <button type="button" id="sidebarCollapse" class="btn btn-info text-white shadow-none" style="background-color: #7548fe;border: 1px solid #7548FE;">
+                        <i class="fa fa-angle-right" style="font-size:26px"></i>
                     </button>
-                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button"
+                    <!-- <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button"
                         data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fa fa-bars fa-lg text-white"></i>
                     </button>
 
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <div class="d-flex align-items-center" style="margin-left: auto;">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent"></div> -->
+                        <div class="d-flex align-items-center justify-content-end" style="margin-left: auto;">
                             <div class="fa fa-question-circle-o fa-lg" style="padding-right: 50px;"></div>
-                            <div>
+                            <div class="userProfile" style="">
                                 <div style="font-weight: 500;">hello bunny</div>
                                 <div class="" style="font-size: 12px;color: grey;">hello@gmail.com</div>
                             </div>
-                            <img src="../Images/user.png" class="img-fluid"
+                            <img src="../Images/user.png" class="img-fluid userLogo" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
                                 style="border-radius:50px;padding-left:20px" />
                         </div>
-                    </div>
+                  
                 </div>
             </nav>
 
             <div class="tab-content mt-4">
                 <div id="home" class="active tab-pane">
                     <div class="row">
-                        <div class="col-lg-8 col-12 colPadding" style="padding-right: 20px;">
+                        <div class="col-lg-8 col-12">
                             <div class="row mt-2" style="font-weight: 500;text-align:justify;">
                                 <div style="font-size: 24px;font-weight:600">Handheld whiteboards with pre-printed
                                     learning
@@ -140,30 +163,50 @@
                                     basic boards or you can customize
                                     your own personal boards (30 or more)
                                     for your students.</div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 px-2 col-12 mb-5 justify-content-center d-flex">
-                                    <div>
-                                        <img src="../Images/kids2.png" class="img-fluid" />
-                                        <div class="text-center">Pre-K & Kindergarten</div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 px-2 col-12 mb-5">
+                                    <div class="justify-content-center d-flex">
+                                        <a href="./kinderGarten.html" target="_blank" style="color: white;"
+                                            class="text-decoration-none position-relative grade">
+                                            <div class="position-absolute justify-content-center align-items-center d-flex select w-100"
+                                                style="height: 100%;">select</div>
+                                            <img src="../Images/kinder.png" class="img-fluid" />
+                                        </a>
                                     </div>
+                                    <div class="text-center" style="color: black;">Pre-K & Kindergarten</div>
+
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 px-2 col-12 mb-5 justify-content-center d-flex">
-                                    <div>
-                                        <img src="../Images/kids.png" class="img-fluid" />
-                                        <div class="text-center">1st & 2nd Graders</div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 px-2 col-12 mb-5">
+                                    <div class="justify-content-center d-flex">
+                                        <a href="./firstAndSecondGrade.html" target="_blank" style="color: white;"
+                                            class="text-decoration-none position-relative grade">
+                                            <div class="position-absolute justify-content-center align-items-center d-flex select w-100"
+                                                style="height: 100%;">select</div>
+                                            <img src="../Images/kids.png" class="img-fluid" />
+                                        </a>
                                     </div>
+                                    <div class="text-center" style="color: black;">1st & 2nd Graders</div>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 px-2 col-12 mb-5 justify-content-center d-flex">
-                                    <div>
-                                        <img src="../Images/kids1.png" class="img-fluid" />
-                                        <div class="text-center">3rd & 4th Graders</div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 px-2 col-12 mb-5">
+                                    <div class="justify-content-center d-flex">
+                                        <a href="./thirdAndFourthGrade.html" target="_blank" style="color: white;"
+                                            class="text-decoration-none position-relative grade">
+                                            <div class="position-absolute justify-content-center align-items-center d-flex select w-100"
+                                                style="height: 100%;">select</div>
+                                            <img src="../Images/kids1.png" class="img-fluid" />
+                                        </a>
                                     </div>
+                                    <div class="text-center" style="color: black;">3rd & 4th Graders</div>
                                 </div>
-                                <div
-                                    class="col-lg-6 col-md-6 col-sm-6 px-2 col-12 mb-lg-0 mb-mb-0 mb-sm-0 mb-4 justify-content-center d-flex">
-                                    <div>
-                                        <img src="../Images/kinder.png" class="img-fluid" />
-                                        <div class="text-center">5th & 6th Graders</div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 px-2 col-12 mb-lg-0 mb-mb-0 mb-sm-0 mb-4">
+                                    <div class="justify-content-center d-flex">
+                                        <a href="./fifthAndSixthGrade.html" target="_blank" style="color: white;"
+                                            class="text-decoration-none position-relative grade">
+                                            <div class="position-absolute justify-content-center align-items-center d-flex select w-100"
+                                                style="height: 100%;">select</div>
+                                            <img src="../Images/kids2.png" class="img-fluid" />
+                                        </a>
                                     </div>
+                                    <div class="text-center" style="color: black;">5th & 6th Graders</div>
                                 </div>
                             </div>
                         </div>
@@ -178,17 +221,13 @@
                         </div>
                     </div>
                 </div>
-                <div id="premade" class="tab-pane fade">
-                    Pre-made
-                </div>
                 <div id="custom" class="tab-pane fade">
                     <div class="" id="next">
                         <div style="font-size:24px;font-weight: 600;border-radius: 15px;box-shadow: 1px 1px 2px 1px silver;"
                             class="bg-dark p-4 text-white">Customize your board</div>
                         <div class="row">
-                            <div class="col-lg-8 col-12 colPadding" style="padding-right: 20px;">
+                            <div class="col-lg-8 col-12">
                                 <div class="row mt-2" style="text-align:justify;">
-
                                     <div class="my-3 px-3 mb-5" style="font-size: 16px;font-weight: 500;">Design your
                                         student’s chart</div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-12 px-3 mb-5">
@@ -310,7 +349,7 @@
                             <div class="text-center my-5">
                                 <div class="btn btn-primary border-0 py-2 px-5 mx-2"
                                     style="border-radius: 10px;background-color: #eee;border: 1px solid silver;color: black;"
-                                    onclick="sendEnquiry()">
+                                    onclick="sendEnquiry1()">
                                     Back</div>
                             </div>
                             <div class="text-center my-5">
@@ -320,11 +359,67 @@
                         </div>
                     </div>
                 </div>
-                <div id="account" class="tab-pane fade">
-                    account
+                <div id="drafts" class="tab-pane fade">
+                    drafts
+                </div>
+                <div id="about" class="tab-pane fade">
+                    about
                 </div>
                 <div id="contact" class="tab-pane fade">
-                    contact
+                    <div class="row">
+                        <div class="col-lg-6 col-12 p-5">
+                            <div style="font-size: 32px;font-weight: 500;">Contact us</div>
+                            <div style="font-size: 16px;color: grey;">Any question or remarks? Just write us a message!
+                            </div>
+                            <table class="mt-4" style="font-size: 16px;width: 100%;">
+                                <tr>
+                                    <td class="py-2" style="font-weight: 500;">First name</td>
+                                    <td style="color: grey;text-align: end;">hello</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2" style="font-weight: 500;">Last name</td>
+                                    <td style="color: grey;text-align: end;">bunny</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2" style="font-weight: 500;">E-mail</td>
+                                    <td style="color: grey;text-align: end;">hello@gmail.com</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2" style="font-weight: 500;">Password</td>
+                                    <td style="color: grey;text-align: end;">************</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-2" style="font-weight: 500;">Message</td>
+                                    <td style="color: grey;text-align: end;">write your message</td>
+                                </tr>
+                            </table>
+                            <div class="text-end my-5">
+                                <div class="btn btn-primary border-0 w-25 py-2" id="nextBtn"
+                                    style="border-radius: 10px;background-color: #7548FE;" onclick="sendEnquiry()">
+                                    Submit</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-12 colPadding text-white">
+                            <div class="p-4" style="background-color: #7548FE;border-radius:10px;">
+                                <div class="" style="font-size: 32px;">Contact information</div>
+                                <div class="" style="font-size: 16px;">Fill upp the form and our team will get back to
+                                    you </div>
+                                <div class="py-4" style="font-size: 16px;">
+                                    <div class="d-flex mb-3">
+                                        <img src="../Images/call.png" class="img-fluid"
+                                            style="height: 24px;width: 24px;margin-right: 20px;" />
+                                        <div>+ 0123-456-789</div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <img src="../Images/contactHelp.png" class="img-fluid"
+                                            style="height: 24px;width: 24px;margin-right: 20px;" />
+                                        <div>contact@help.com</div>
+                                    </div>
+                                </div>
+                                <img src="../Images/contactImg.png" class="img-fluid" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
