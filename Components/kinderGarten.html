@@ -23,7 +23,7 @@
     }
 </style>
 <script>
-    const backBoard =()=> {
+    const backBoard = () => {
         var x = document.getElementById('frontBoard');
         var y = document.getElementById('backBoard');
 
@@ -35,6 +35,7 @@
             y.style.display = "block"
         }
     }
+
 
 </script>
 
@@ -48,8 +49,9 @@
                         <div class="position-relative">
                             <img src="../Images/triangle.png" class="img-fluid"
                                 style="transform: rotate(180deg);width:100%" />
-                               <a href="./dashBoard.html"> <div class="btn btn-primary position-absolute m-lg-4 m-2 px-lg-3"
-                                    style="z-index: 1;left:0;background-color: #7548fe;"><span class="fa fa-save"></span>&nbsp;&nbsp;Save</div></a>
+                            <div class="btn btn-primary position-absolute m-lg-4 m-2 px-lg-3"
+                                style="z-index: 1;left:0;background-color: #7548fe;" id="save" onclick="EquiryFrom()">
+                                <span class="fa fa-save"></span>&nbsp;&nbsp;Save</div>
                         </div>
                         <div class="bottom-0 position-absolute" style="width: 100%;">
                             <img src="../Images/10.png" class="img-fluid" style="height: 40vh;" />
@@ -65,19 +67,15 @@
                         </div>
 
                         <div class="row bottom-0 position-absolute" style="width: 55.6%;">
-                            <div class="col-3">
+                            <div class="col">
                                 <div id="div1" style="overflow-y: scroll;height: 150px;width:100%" ondrop="drop(event)"
                                     ondragover="allowDrop(event)"></div>
                             </div>
-                            <div class="col-3">
+                            <div class="col">
                                 <div id="div1" style="overflow-y: scroll;height: 150px;width:100%" ondrop="drop(event)"
                                     ondragover="allowDrop(event)"></div>
                             </div>
-                            <div class="col-3">
-                                <div id="div1" style="overflow-y: scroll;height: 150px;width:100%" ondrop="drop(event)"
-                                    ondragover="allowDrop(event)"></div>
-                            </div>
-                            <div class="col-3">
+                            <div class="col">
                                 <div id="div1" style="overflow-y: scroll;height: 150px;width:100%" ondrop="drop(event)"
                                     ondragover="allowDrop(event)"></div>
                             </div>
